@@ -109,8 +109,10 @@ RUN apt-get -q --no-allow-insecure-repositories update \
 
 # Core ##################################################################
 FROM ubuntu-minimal AS ubuntu-core
+
+# NOTE: we need a glob here in case we're building without pandoc-crossref
 COPY --from=ubuntu-builder \
-  /usr/local/bin/pandoc-crossref \
+  /usr/local/bin/pandoc-crossref* \
   /usr/local/bin/
 
 # Additional packages frequently used during conversions

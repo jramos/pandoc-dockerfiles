@@ -89,8 +89,10 @@ RUN apk --no-cache add \
 
 # Core ##################################################################
 FROM alpine-minimal AS alpine-core
+
+# NOTE: we need a glob here in case we're building without pandoc-crossref
 COPY --from=alpine-builder \
-  /usr/local/bin/pandoc-crossref \
+  /usr/local/bin/pandoc-crossref* \
   /usr/local/bin/
 
 # Additional packages frequently used during conversions
